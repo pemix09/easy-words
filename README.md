@@ -1,5 +1,4 @@
-# Dodatkowe przykłady na potrzeby kursu Angulara
-
+# Aplikacja "Easy Words" na potrzeby edukacyjne kursu Udemy.
 
 ## Więcej informacji:
 - mój kurs na Udemy [https://www.udemy.com/course/angular-kompletny-kurs-od-podstaw/](https://www.udemy.com/course/angular-kompletny-kurs-od-podstaw/?referralCode=58A71AA9B0E86A4D8D88)
