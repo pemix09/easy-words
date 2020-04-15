@@ -6,7 +6,7 @@
 - kanał YT: [https://www.youtube.com/ZacznijProgramowac](https://www.youtube.com/ZacznijProgramowac)
 
 # Otwórz ten projekt przez StackBlitz:
-...
+[https://stackblitz.com/github/ZacznijProgramowac/easy-words/tree/003-answer-component](https://stackblitz.com/github/ZacznijProgramowac/easy-words/tree/003-answer-component)
 
 ## Wymagania projektu
 - Angular CLI & Angular > 9.0.0
