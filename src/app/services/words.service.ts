@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { Type, WordType } from '../data/models';
 import { WORDS } from '../data/data-base';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WordsService {
   private words = new BehaviorSubject<WordType[]>([]);
-  private nouns = new Subject<WordType>();
-  private verbs = new Subject<WordType>();
+  private answers = new Subject<WordType>();
 
   constructor() {
     setTimeout(() => {
@@ -19,11 +18,13 @@ export class WordsService {
   }
 
   addNoun(value: WordType): void {
-    this.nouns.next(value);
+    value.correct = value.type === Type.NOUN;
+    this.answers.next(value);
   }
 
   addVerb(value: WordType): void {
-    this.verbs.next(value);
+    value.correct = value.type === Type.VERB;
+    this.answers.next(value);
   }
 
   getWords(): BehaviorSubject<WordType[]> {
@@ -31,20 +32,26 @@ export class WordsService {
   }
 
   getNouns(): Observable<WordType> {
-    return this.nouns.asObservable().pipe(
-      map(word => {
-        word.correct = word.type === Type.NOUN;
-        return word;
-      })
-    );
+    return this.answers
+      .asObservable()
+      .pipe(
+        filter(
+          word =>
+            (word.type === Type.VERB && word.correct === false) ||
+            (word.type === Type.NOUN && word.correct === true)
+        )
+      );
   }
 
   getVerbs(): Observable<WordType> {
-    return this.verbs.asObservable().pipe(
-      map(word => {
-        word.correct = word.type === Type.VERB;
-        return word;
-      })
-    );
+    return this.answers
+      .asObservable()
+      .pipe(
+        filter(
+          word =>
+            (word.type === Type.NOUN && word.correct === false) ||
+            (word.type === Type.VERB && word.correct === true)
+        )
+      );
   }
 }
