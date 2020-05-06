@@ -8,5 +8,11 @@ import { WordType } from '../../data/models';
 })
 export class AnswersComponent {
   @Input() title: string;
-  @Input() words: WordType[];
+  words: WordType[] = [];
+
+  @Input() set word(word: WordType) {
+    if (word) {
+      this.words.push(word);
+    }
+  }
 }
