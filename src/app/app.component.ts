@@ -1,3 +1,4 @@
+import { WordsService } from './services/words.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,4 +6,17 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {}
+export class AppComponent {
+
+  constructor(private wordService: WordsService){
+
+  }
+
+  get nouns(){
+    return this.wordService.GetNouns();
+  }
+
+  get verbs(){
+    return this.wordService.GetVerbs();
+  }
+}

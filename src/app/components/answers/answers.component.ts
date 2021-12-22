@@ -1,5 +1,6 @@
+import { WordsService } from './../../services/words.service';
 import { WordType } from './../../data/models';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { WORDS } from 'src/app/data/data-base';
 
 @Component({
@@ -7,17 +8,13 @@ import { WORDS } from 'src/app/data/data-base';
   templateUrl: './answers.component.html',
   styleUrls: ['./answers.component.css']
 })
-export class AnswersComponent implements OnInit {
+export class AnswersComponent {
 
-  private words: WordType[] = [];
-  private nouns: WordType[] = [];
-  private verbs: WordType[] = [];
+  @Input()
+  title: string;
 
-  constructor() { 
-    this.words = WORDS;
-  }
-
-  ngOnInit(): void {
-  }
+  @Input()
+  words: WordType[] = [];
+  
 
 }
